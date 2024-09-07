@@ -3,10 +3,14 @@ stages:
 
 pages:
   stage: deploy
-  script:
-    - mv ./deploy ./public  # Di chuyển thư mục build WebGL của bạn vào thư mục public
+    variables:
+    FF_USE_FASTZIP: "true"
+    ARTIFACT_COMPRESSION_LEVEL: "fastest"
+  script: 
+    - echo "Deploying pages"
   artifacts:
     paths:
       - public
   only:
     - main 
+
