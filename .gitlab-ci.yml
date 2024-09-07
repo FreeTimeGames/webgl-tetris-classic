@@ -3,7 +3,7 @@ stages:
 
 pages:
   stage: deploy
-    variables:
+  variables:
     FF_USE_FASTZIP: "true"
     ARTIFACT_COMPRESSION_LEVEL: "fastest"
   script: 
@@ -12,5 +12,4 @@ pages:
     paths:
       - public
   only:
-    - main 
-
+    - main
