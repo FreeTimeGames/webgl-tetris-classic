@@ -172,8 +172,11 @@
               });
             };
 
-      document.body.appendChild(script);
+        document.body.appendChild(script);
 
+        document.body.style.backgroundColor = "black";
+        window.addEventListener('resize', onWindowResize, true);
+        onWindowResize(null);
     </script>
   </body>
 </html>
