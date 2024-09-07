@@ -61,34 +61,34 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
-	function onWindowResize(event) {
-            var width = window.innerWidth
-                || document.documentElement.clientWidth
-                || document.body.clientWidth;
-            var _h = Math.floor(width * 16.0 / 9.0);
-            var height = window.innerHeight
-                || document.documentElement.clientHeight
-                || document.body.clientHeight;
-            var _w = Math.floor(height * 9.0 / 16.0);
-            if (height > _h) {
-                height = _h;
-            }
-            else if (width > _w) {
-                width = _w;
-            }
-            canvas.style.width = width + "px";
-            canvas.style.height = height + "px";
+function onWindowResize() {
+    var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-            document.documentElement.style.overflowX = 'auto';
-            document.documentElement.style.overflowY = 'auto';
-            if (document.documentElement.scrollWidth > document.documentElement.clientWidth) {
-                document.documentElement.style.overflowX = 'hidden';
-            }
-            if (document.documentElement.scrollHeight > document.documentElement.clientHeight) {
-                document.documentElement.style.overflowY = 'hidden';
-            }
-        }
+    var aspectRatio = 16 / 9;
+    var newWidth = width;
+    var newHeight = height;
 
+    // Kiểm tra tỷ lệ và thay đổi width/height cho đúng tỷ lệ 16:9
+    if (width / height > aspectRatio) {
+        newWidth = height * aspectRatio;
+    } else {
+        newHeight = width / aspectRatio;
+    }
+
+    // Cập nhật kích thước của canvas
+    canvas.style.width = newWidth + "px";
+    canvas.style.height = newHeight + "px";
+    
+    // Cập nhật render của Unity (nếu cần)
+    if (unityInstance) {
+        unityInstance.SetCanvasSize(newWidth, newHeight);
+    }
+}
+
+// Gọi hàm resize ban đầu khi trang load
+onWindowResize();
+window.addEventListener('resize', onWindowResize);
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
