@@ -8,11 +8,7 @@ pages:
     ARTIFACT_COMPRESSION_LEVEL: "fastest"
   script:
     - mv ./deploy ./public  # Di chuyển thư mục build WebGL vào thư mục public
-    - find ./public -name "*.js" -exec gzip -k {} \;  # Gzip các file .js
-    - find ./public -name "*.data" -exec gzip -k {} \;  # Gzip các file .data
-    - find ./public -name "*.wasm" -exec gzip -k {} \;  # Gzip các file .wasm
-    - find ./public -name "*.mem" -exec gzip -k {} \;  # Gzip các file .mem (nếu có)
-    - find ./public -name "*.symbols.json" -exec gzip -k {} \;  # Gzip các file .symbols.json
+    - cp ./.htaccess ./public/.htaccess  # Copy file .htaccess vào thư mục public
     - echo "Deploying pages"
   artifacts:
     paths:

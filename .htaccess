@@ -1,0 +1,13 @@
+<IfModule mod_mime.c>
+    AddEncoding gzip .gz
+    AddType application/javascript .gz .js
+    AddType application/octet-stream .gz .data
+    AddType application/wasm .gz .wasm
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Thêm tiêu đề Content-Encoding gzip cho file .gz
+    <FilesMatch "\.gz$">
+        Header set Content-Encoding "gzip"
+    </FilesMatch>
+</IfModule>
