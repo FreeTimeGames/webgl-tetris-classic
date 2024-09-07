@@ -83,9 +83,6 @@
                 document.documentElement.style.overflowY = 'hidden';
             }
         }
-        document.body.style.backgroundColor = "black";
-        window.addEventListener('resize', onWindowResize, true);
-        onWindowResize(null);
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
@@ -171,6 +168,9 @@
 
       document.body.appendChild(script);
 
+        document.body.style.backgroundColor = "black";
+        window.addEventListener('resize', onWindowResize, true);
+        onWindowResize(null);
     </script>
   </body>
 </html>
