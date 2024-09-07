@@ -1,0 +1,12 @@
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  script:
+    - mv ./deploy ./public  # Di chuyển thư mục build WebGL của bạn vào thư mục public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main 
